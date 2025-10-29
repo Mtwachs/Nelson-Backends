@@ -5,11 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class LojaRoupasApplication {
-
-	public static void main(String[] args) {
-		SpringApplication.run(LojaRoupasApplication.class, args);
-        System.out.println("bongas" );
-        System.exit(0);
-	}
-
+    public static void main(String[] args) {
+        SpringApplication.run(LojaRoupasApplication.class, args);
+    }
 }
