@@ -1,10 +1,17 @@
 package TrabalhoBackEnd.Loja_Roupas;
 
+import jakarta.persistence.*;
 import java.time.LocalDate;
 
+@Entity
 public class Cliente extends Pessoa {
+    @Column(nullable = false, unique = true, length = 11)
     private String cpf;
+    
+    @Column(nullable = false)
     private LocalDate dataNascimento;
+    
+    @Column(nullable = false)
     private Integer pontuacao;
 
     public Cliente() {

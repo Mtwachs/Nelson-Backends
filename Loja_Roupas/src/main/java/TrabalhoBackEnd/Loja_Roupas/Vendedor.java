@@ -1,6 +1,10 @@
 package TrabalhoBackEnd.Loja_Roupas;
 
+import jakarta.persistence.*;
+
+@Entity
 public class Vendedor extends Pessoa {
+    @Column(nullable = false, unique = true)
     private String matricula;
 
     public Vendedor() {
