@@ -16,7 +16,7 @@ public class Cliente extends Pessoa {
 
     public Cliente() {
         super();
-        this.pontuacao = 0; // Initialize pontuacao with 0 for new clients
+        this.pontuacao = 0; 
     }
 
     public Cliente(Long id, String nome, String email, String telefone, 
