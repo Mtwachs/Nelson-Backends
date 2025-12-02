@@ -1,6 +1,7 @@
 package TrabalhoBackEnd.Loja_Roupas;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 import java.math.BigDecimal;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -13,21 +14,26 @@ public class Produto {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
+    @NotBlank(message = "Nome é obrigatório")
     @Column(nullable = false)
     private String nome;
 
     @Column(length = 1000)
     private String descricao;
 
+    @NotNull(message = "Preço base é obrigatório")
+    @DecimalMin(value = "0.01", message = "Preço base deve ser maior que zero")
     @Column(nullable = false, precision = 15, scale = 2)
     private BigDecimal precoBase;
 
     @Column(nullable = false)
     private Boolean ativo = true;
 
+    @NotNull(message = "Categoria é obrigatória")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Categoria categoria;
 
+    @NotNull(message = "Marca é obrigatória")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Marca marca;
 
