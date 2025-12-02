@@ -1,5 +1,3 @@
-
-
 package TrabalhoBackEnd.Loja_Roupas;
 
 import jakarta.persistence.*;
@@ -22,8 +20,7 @@ public abstract class Pessoa {
     @Column(nullable = false)
     private String telefone;
     
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "pessoa_id")
+    @OneToMany(mappedBy = "pessoa", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Endereco> enderecos = new ArrayList<>();
 
     public Pessoa() {
@@ -78,5 +75,6 @@ public abstract class Pessoa {
 
     public void addEndereco(Endereco endereco) {
         this.enderecos.add(endereco);
+        endereco.setPessoa(this);
     }
 }

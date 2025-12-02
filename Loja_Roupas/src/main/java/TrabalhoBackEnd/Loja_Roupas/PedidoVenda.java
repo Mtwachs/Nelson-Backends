@@ -11,7 +11,7 @@ import java.util.UUID;
 public class PedidoVenda {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
     @Column(nullable = false)
@@ -22,29 +22,76 @@ public class PedidoVenda {
     private StatusPedido status;
 
     @Column(nullable = false, precision = 15, scale = 2)
-    private BigDecimal total;
+    private BigDecimal total = BigDecimal.ZERO;
 
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name = "cliente_id")
+    @ManyToOne(fetch = FetchType.LAZY)
     private Cliente cliente;
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name = "vendedor_id")
     private Vendedor vendedor;
 
-    @OneToMany(mappedBy = "pedidoVenda", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "pedidoVenda", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<ItemPedido> itens = new LinkedHashSet<>();
 
-    public UUID getId() { return id; }
-    public LocalDateTime getData() { return data; }
-    public void setData(LocalDateTime data) { this.data = data; }
-    public StatusPedido getStatus() { return status; }
-    public void setStatus(StatusPedido status) { this.status = status; }
-    public BigDecimal getTotal() { return total; }
-    public void setTotal(BigDecimal total) { this.total = total; }
-    public Cliente getCliente() { return cliente; }
-    public void setCliente(Cliente cliente) { this.cliente = cliente; }
-    public Vendedor getVendedor() { return vendedor; }
-    public void setVendedor(Vendedor vendedor) { this.vendedor = vendedor; }
-    public Set<ItemPedido> getItens() { return itens; }
+    public PedidoVenda() {
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public LocalDateTime getData() {
+        return data;
+    }
+
+    public void setData(LocalDateTime data) {
+        this.data = data;
+    }
+
+    public StatusPedido getStatus() {
+        return status;
+    }
+
+    public void setStatus(StatusPedido status) {
+        this.status = status;
+    }
+
+    public BigDecimal getTotal() {
+        return total;
+    }
+
+    public void setTotal(BigDecimal total) {
+        this.total = total;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public Vendedor getVendedor() {
+        return vendedor;
+    }
+
+    public void setVendedor(Vendedor vendedor) {
+        this.vendedor = vendedor;
+    }
+
+    public Set<ItemPedido> getItens() {
+        return itens;
+    }
+
+    public void addItem(ItemPedido item) {
+        this.itens.add(item);
+        item.setPedidoVenda(this);
+    }
+
+    public void calcularTotal() {
+        this.total = itens.stream()
+                .map(item -> item.getPrecoUnit().multiply(BigDecimal.valueOf(item.getQuantidade())))
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
 }

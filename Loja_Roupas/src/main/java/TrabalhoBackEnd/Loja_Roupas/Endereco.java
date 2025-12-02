@@ -28,6 +28,9 @@ public class Endereco {
     @Column(nullable = false, length = 8)
     private String cep;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Pessoa pessoa;
+
     public Endereco() {
     }
 
@@ -105,5 +108,13 @@ public class Endereco {
 
     public void setCep(String cep) {
         this.cep = cep;
+    }
+
+    public Pessoa getPessoa() {
+        return pessoa;
+    }
+
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
     }
 }

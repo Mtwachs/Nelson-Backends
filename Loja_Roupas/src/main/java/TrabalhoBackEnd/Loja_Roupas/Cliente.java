@@ -12,11 +12,10 @@ public class Cliente extends Pessoa {
     private LocalDate dataNascimento;
     
     @Column(nullable = false)
-    private Integer pontuacao;
+    private Integer pontuacao = 0;
 
     public Cliente() {
         super();
-        this.pontuacao = 0; 
     }
 
     public Cliente(Long id, String nome, String email, String telefone, 
@@ -24,7 +23,7 @@ public class Cliente extends Pessoa {
         super(id, nome, email, telefone);
         this.cpf = cpf;
         this.dataNascimento = dataNascimento;
-        this.pontuacao = pontuacao;
+        this.pontuacao = pontuacao != null ? pontuacao : 0;
     }
 
     public String getCpf() {
