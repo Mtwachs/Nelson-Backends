@@ -1,4 +1,4 @@
-package TrabalhoBackEnd.Loja_Roupas;
+package TrabalhoBackEnd.Loja_Roupas.model;
 
 import jakarta.persistence.*;
 import java.math.BigDecimal;

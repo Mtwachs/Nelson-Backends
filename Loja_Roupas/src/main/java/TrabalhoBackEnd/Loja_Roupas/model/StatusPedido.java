@@ -1,4 +1,4 @@
-package TrabalhoBackEnd.Loja_Roupas;
+package TrabalhoBackEnd.Loja_Roupas.model;
 
 public enum StatusPedido {
     ABERTO,
