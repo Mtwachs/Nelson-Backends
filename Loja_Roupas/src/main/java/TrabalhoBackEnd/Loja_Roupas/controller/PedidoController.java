@@ -15,7 +15,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/pedidos")
 public class PedidoController {
-    
+
     @Autowired
     private PedidoService pedidoService;
 
@@ -31,7 +31,7 @@ public class PedidoController {
             .map(ResponseEntity::ok)
             .orElse(ResponseEntity.notFound().build());
     }
-    
+
     @PostMapping
     public ResponseEntity<PedidoVenda> criar(@Valid @RequestBody PedidoVenda pedido) {
         try {
@@ -41,7 +41,7 @@ public class PedidoController {
             return ResponseEntity.badRequest().build();
         }
     }
-    
+
     @PutMapping("/{id}")
     public ResponseEntity<PedidoVenda> atualizar(
             @PathVariable UUID id,
@@ -53,7 +53,7 @@ public class PedidoController {
             return ResponseEntity.notFound().build();
         }
     }
-    
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletar(@PathVariable UUID id) {
         try {
@@ -63,7 +63,7 @@ public class PedidoController {
             return ResponseEntity.notFound().build();
         }
     }
-    
+
     @PatchMapping("/{id}/status")
     public ResponseEntity<PedidoVenda> atualizarStatus(
             @PathVariable UUID id,
@@ -75,13 +75,13 @@ public class PedidoController {
             return ResponseEntity.notFound().build();
         }
     }
-    
+
     @GetMapping("/status/{status}")
     public ResponseEntity<List<PedidoVenda>> buscarPorStatus(@PathVariable StatusPedido status) {
         List<PedidoVenda> pedidos = pedidoService.buscarPorStatus(status);
         return ResponseEntity.ok(pedidos);
     }
-    
+
     @GetMapping("/cliente/{clienteId}")
     public ResponseEntity<List<PedidoVenda>> buscarPorCliente(@PathVariable Long clienteId) {
         List<PedidoVenda> pedidos = pedidoService.buscarPorCliente(clienteId);

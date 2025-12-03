@@ -10,8 +10,8 @@ import java.util.UUID;
 
 @Repository
 public interface PedidoRepository extends JpaRepository<PedidoVenda, UUID> {
-    
+
     List<PedidoVenda> findByStatus(StatusPedido status);
-    
+
     List<PedidoVenda> findByClienteId(Long clienteId);
 }
