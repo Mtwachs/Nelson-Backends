@@ -1,5 +1,6 @@
 package TrabalhoBackEnd.Loja_Roupas.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import java.math.BigDecimal;
@@ -37,6 +38,7 @@ public class Produto {
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Marca marca;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "produto", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<SKU> skus = new LinkedHashSet<>();
 

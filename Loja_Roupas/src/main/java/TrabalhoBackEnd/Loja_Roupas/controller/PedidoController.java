@@ -5,11 +5,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import TrabalhoBackEnd.Loja_Roupas.model.Pedido;
+import TrabalhoBackEnd.Loja_Roupas.model.PedidoVenda;
 import TrabalhoBackEnd.Loja_Roupas.model.StatusPedido;
 import TrabalhoBackEnd.Loja_Roupas.service.PedidoService;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/pedidos")
@@ -19,22 +20,22 @@ public class PedidoController {
     private PedidoService pedidoService;
 
     @GetMapping
-    public ResponseEntity<List<Pedido>> listar() {
-        List<Pedido> pedidos = pedidoService.listarTodos();
+    public ResponseEntity<List<PedidoVenda>> listar() {
+        List<PedidoVenda> pedidos = pedidoService.listarTodos();
         return ResponseEntity.ok(pedidos);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Pedido> buscar(@PathVariable Long id) {
+    public ResponseEntity<PedidoVenda> buscar(@PathVariable UUID id) {
         return pedidoService.buscarPorId(id)
             .map(ResponseEntity::ok)
             .orElse(ResponseEntity.notFound().build());
     }
     
     @PostMapping
-    public ResponseEntity<Pedido> criar(@Valid @RequestBody Pedido pedido) {
+    public ResponseEntity<PedidoVenda> criar(@Valid @RequestBody PedidoVenda pedido) {
         try {
-            Pedido pedidoSalvo = pedidoService.salvar(pedido);
+            PedidoVenda pedidoSalvo = pedidoService.salvar(pedido);
             return ResponseEntity.status(HttpStatus.CREATED).body(pedidoSalvo);
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().build();
@@ -42,11 +43,11 @@ public class PedidoController {
     }
     
     @PutMapping("/{id}")
-    public ResponseEntity<Pedido> atualizar(
-            @PathVariable Long id,
-            @Valid @RequestBody Pedido pedido) {
+    public ResponseEntity<PedidoVenda> atualizar(
+            @PathVariable UUID id,
+            @Valid @RequestBody PedidoVenda pedido) {
         try {
-            Pedido pedidoAtualizado = pedidoService.atualizar(id, pedido);
+            PedidoVenda pedidoAtualizado = pedidoService.atualizar(id, pedido);
             return ResponseEntity.ok(pedidoAtualizado);
         } catch (RuntimeException e) {
             return ResponseEntity.notFound().build();
@@ -54,7 +55,7 @@ public class PedidoController {
     }
     
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletar(@PathVariable Long id) {
+    public ResponseEntity<Void> deletar(@PathVariable UUID id) {
         try {
             pedidoService.deletar(id);
             return ResponseEntity.noContent().build();
@@ -64,11 +65,11 @@ public class PedidoController {
     }
     
     @PatchMapping("/{id}/status")
-    public ResponseEntity<Pedido> atualizarStatus(
-            @PathVariable Long id,
+    public ResponseEntity<PedidoVenda> atualizarStatus(
+            @PathVariable UUID id,
             @RequestParam StatusPedido status) {
         try {
-            Pedido pedidoAtualizado = pedidoService.atualizarStatus(id, status);
+            PedidoVenda pedidoAtualizado = pedidoService.atualizarStatus(id, status);
             return ResponseEntity.ok(pedidoAtualizado);
         } catch (RuntimeException e) {
             return ResponseEntity.notFound().build();
@@ -76,14 +77,14 @@ public class PedidoController {
     }
     
     @GetMapping("/status/{status}")
-    public ResponseEntity<List<Pedido>> buscarPorStatus(@PathVariable StatusPedido status) {
-        List<Pedido> pedidos = pedidoService.buscarPorStatus(status);
+    public ResponseEntity<List<PedidoVenda>> buscarPorStatus(@PathVariable StatusPedido status) {
+        List<PedidoVenda> pedidos = pedidoService.buscarPorStatus(status);
         return ResponseEntity.ok(pedidos);
     }
     
     @GetMapping("/cliente/{clienteId}")
-    public ResponseEntity<List<Pedido>> buscarPorCliente(@PathVariable Long clienteId) {
-        List<Pedido> pedidos = pedidoService.buscarPorCliente(clienteId);
+    public ResponseEntity<List<PedidoVenda>> buscarPorCliente(@PathVariable Long clienteId) {
+        List<PedidoVenda> pedidos = pedidoService.buscarPorCliente(clienteId);
         return ResponseEntity.ok(pedidos);
     }
 }

@@ -1,5 +1,6 @@
 package TrabalhoBackEnd.Loja_Roupas.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -27,9 +28,10 @@ public class PedidoVenda {
     @ManyToOne(fetch = FetchType.LAZY)
     private Cliente cliente;
 
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Vendedor vendedor;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "pedidoVenda", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<ItemPedido> itens = new LinkedHashSet<>();
 

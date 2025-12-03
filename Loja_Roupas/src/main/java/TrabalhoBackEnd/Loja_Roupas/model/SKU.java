@@ -1,5 +1,6 @@
 package TrabalhoBackEnd.Loja_Roupas.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.util.UUID;
@@ -23,6 +24,7 @@ public class SKU {
     @Column(nullable = false, precision = 15, scale = 2)
     private BigDecimal precoVenda;
 
+    @JsonIgnore
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Produto produto;
 

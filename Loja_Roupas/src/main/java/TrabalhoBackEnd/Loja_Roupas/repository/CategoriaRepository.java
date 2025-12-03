@@ -2,7 +2,7 @@ package TrabalhoBackEnd.Loja_Roupas.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import TrabalhoBackEnd.Loja_Roupas.Categoria;
+import TrabalhoBackEnd.Loja_Roupas.model.Categoria;
 
 import java.util.UUID;
 

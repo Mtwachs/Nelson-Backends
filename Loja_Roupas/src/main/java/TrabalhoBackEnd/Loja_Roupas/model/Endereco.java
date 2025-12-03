@@ -1,5 +1,6 @@
 package TrabalhoBackEnd.Loja_Roupas.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -28,6 +29,7 @@ public class Endereco {
     @Column(nullable = false, length = 8)
     private String cep;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     private Pessoa pessoa;
 

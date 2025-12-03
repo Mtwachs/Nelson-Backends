@@ -2,16 +2,16 @@ package TrabalhoBackEnd.Loja_Roupas.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import TrabalhoBackEnd.Loja_Roupas.model.Pedido;
+import TrabalhoBackEnd.Loja_Roupas.model.PedidoVenda;
 import TrabalhoBackEnd.Loja_Roupas.model.StatusPedido;
 
 import java.util.List;
+import java.util.UUID;
 
 @Repository
-public interface PedidoRepository extends JpaRepository<Pedido, Long> {
+public interface PedidoRepository extends JpaRepository<PedidoVenda, UUID> {
     
-    // Métodos de busca customizados (opcionais)
-    List<Pedido> findByStatus(StatusPedido status);
+    List<PedidoVenda> findByStatus(StatusPedido status);
     
-    List<Pedido> findByClienteId(Long clienteId);
+    List<PedidoVenda> findByClienteId(Long clienteId);
 }

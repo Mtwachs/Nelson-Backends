@@ -53,10 +53,8 @@ public class ClienteService {
                 cliente.setEmail(clienteAtualizado.getEmail());
                 cliente.setCpf(clienteAtualizado.getCpf());
                 cliente.setTelefone(clienteAtualizado.getTelefone());
-                cliente.setEndereco(clienteAtualizado.getEndereco());
-                cliente.setCidade(clienteAtualizado.getCidade());
-                cliente.setEstado(clienteAtualizado.getEstado());
-                cliente.setCep(clienteAtualizado.getCep());
+                cliente.setDataNascimento(clienteAtualizado.getDataNascimento());
+                cliente.setPontuacao(clienteAtualizado.getPontuacao());
                 return clienteRepository.save(cliente);
             })
             .orElseThrow(() -> new RuntimeException("Cliente não encontrado com id: " + id));

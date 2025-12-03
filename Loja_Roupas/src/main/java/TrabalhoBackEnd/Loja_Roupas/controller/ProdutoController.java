@@ -1,6 +1,6 @@
 package TrabalhoBackEnd.Loja_Roupas.controller;
 
-import TrabalhoBackEnd.Loja_Roupas.Produto;
+import TrabalhoBackEnd.Loja_Roupas.model.Produto;
 import TrabalhoBackEnd.Loja_Roupas.service.ProdutoService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
