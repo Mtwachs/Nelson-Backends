@@ -2,7 +2,7 @@ package TrabalhoBackEnd.Loja_Roupas.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import TrabalhoBackEnd.Loja_Roupas.Categoria;
+import TrabalhoBackEnd.Loja_Roupas.model.Categoria;
 import TrabalhoBackEnd.Loja_Roupas.repository.CategoriaRepository;
 
 import java.util.List;

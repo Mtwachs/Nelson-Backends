@@ -1,6 +1,6 @@
 package TrabalhoBackEnd.Loja_Roupas.repository;
 
-import TrabalhoBackEnd.Loja_Roupas.Produto;
+import TrabalhoBackEnd.Loja_Roupas.model.Produto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

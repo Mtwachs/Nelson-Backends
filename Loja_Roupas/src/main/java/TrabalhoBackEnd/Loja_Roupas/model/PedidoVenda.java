@@ -82,6 +82,15 @@ public class PedidoVenda {
 
     public Set<ItemPedido> getItens() {
         return itens;
+        
+    }
+    public void setItens(Set<ItemPedido> itens) {
+        this.itens = itens;
+        if (this.itens != null) {
+            for (ItemPedido item : this.itens) {
+                item.setPedidoVenda(this);
+            }
+        }
     }
 
     public void addItem(ItemPedido item) {
